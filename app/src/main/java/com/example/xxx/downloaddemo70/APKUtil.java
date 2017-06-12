@@ -55,16 +55,17 @@ public class APKUtil {
         Intent intentInstall = new Intent();
         intentInstall.setAction(Intent.ACTION_VIEW);
         intentInstall.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        Uri photoURI;
+        Uri uri;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             //above7.0
-            photoURI = FileProvider.getUriForFile(context.getApplicationContext(), context.getApplicationContext().getPackageName() + ".provider", file);
+            uri = FileProvider.getUriForFile(context.getApplicationContext(), context.getApplicationContext().getPackageName() + ".provider", file);
+            //给目标应用设置权限（必要）
             intentInstall.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         } else {
             //below7.0
-            photoURI = Uri.fromFile(file);
+            uri = Uri.fromFile(file);
         }
-        intentInstall.setDataAndType(photoURI, "application/vnd.android.package-archive");
+        intentInstall.setDataAndType(uri, "application/vnd.android.package-archive");
         context.startActivity(intentInstall);
     }
 }
