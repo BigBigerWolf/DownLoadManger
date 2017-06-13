@@ -24,15 +24,15 @@ import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements DownLoadProgressListener {
 
+    private static final String TAG = "MainActivity";
+    public static final String apkName = "QQ.apk";
+    private String url = "https://qd.myapp.com/myapp/qqteam/AndroidQQ/mobileqq_android.apk";
     private Intent serviceIntent;
     private ProgressBar progressBar;
     private TextView textView;
-    private String url = "https://qd.myapp.com/myapp/qqteam/AndroidQQ/mobileqq_android.apk";
-    public static final String apkName = "QQ.apk";
-    private DownLoadService downLoadService;
     private File file;
+    private DownLoadService downLoadService;
     private DownloadedApkInfo downloadedApkInfo;
-    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
